@@ -99,18 +99,54 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 # Crawl SEO Info API
 
-API để lấy thông tin SEO từ một URL bất kỳ, được xây dựng bằng NestJS và TypeScript theo kiến trúc DDD (Domain-Driven Design).
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
+
+## Mô tả
+
+API để lấy thông tin SEO từ một URL bất kỳ, được xây dựng bằng NestJS và TypeScript theo kiến trúc DDD (Domain-Driven Design). API này giúp phân tích và trích xuất các thông tin SEO quan trọng từ bất kỳ trang web nào.
+
+## Tính năng chính
+
+- Crawl và phân tích thông tin SEO từ URL
+- Trích xuất metadata (title, description, keywords)
+- Phân tích Open Graph tags và Twitter Cards
+- Trích xuất cấu trúc heading (h1-h6)
+- Phân tích canonical URL
+- Trích xuất structured data (Schema.org)
+- Liệt kê tất cả hình ảnh trên trang
+
+## Yêu cầu hệ thống
+
+- Node.js (>= 16.x)
+- npm (>= 8.x)
 
 ## Cài đặt
 
 ```bash
+# Clone repository
+git clone [repository-url]
+
+# Di chuyển vào thư mục dự án
+cd crawl-seo-info
+
 # Cài đặt dependencies
 npm install
 
-# Chạy ứng dụng ở môi trường development
+# Tạo file .env từ mẫu
+cp .env.example .env
+
+# Chỉnh sửa các biến môi trường trong file .env
+```
+
+## Chạy ứng dụng
+
+```bash
+# Chạy ở môi trường development
 npm run start:dev
 
-# Chạy ứng dụng ở môi trường production
+# Build và chạy ở môi trường production
 npm run build
 npm run start:prod
 ```
@@ -121,7 +157,7 @@ npm run start:prod
 
 **Endpoint**: `POST /seo-crawler/crawl`
 
-**Body**:
+**Request Body**:
 
 ```json
 {
@@ -169,17 +205,51 @@ npm run start:prod
 
 ## Kiến trúc DDD
 
-Dự án được tổ chức theo kiến trúc DDD với cấu trúc thư mục:
+Dự án được tổ chức theo kiến trúc Domain-Driven Design (DDD) với cấu trúc thư mục:
 
-- **domain**: Chứa entities, value objects và interfaces cho domain model
-- **application**: Chứa services và use cases
-- **infrastructure**: Chứa các triển khai cụ thể như repositories
-- **interfaces**: Chứa controllers và DTOs cho giao tiếp với thế giới bên ngoài
+```
+src/
+├── domain/           # Domain layer
+│   ├── entities/     # Domain entities
+│   ├── value-objects/# Value objects
+│   └── interfaces/   # Domain interfaces
+├── application/      # Application layer
+│   ├── services/     # Application services
+│   └── use-cases/    # Use cases
+├── infrastructure/   # Infrastructure layer
+│   ├── repositories/ # Repository implementations
+│   └── services/     # External services
+└── interfaces/       # Interface layer
+    ├── controllers/  # API controllers
+    └── dtos/        # Data transfer objects
+```
 
 ## Công nghệ sử dụng
 
-- NestJS: Framework node.js
-- TypeScript: Ngôn ngữ lập trình
-- Puppeteer: Thư viện để crawl dữ liệu từ trình duyệt headless
-- Cheerio: Thư viện phân tích HTML
-- Class Validator: Thư viện validate dữ liệu
+- **NestJS**: Framework Node.js hiện đại và mạnh mẽ
+- **TypeScript**: Ngôn ngữ lập trình type-safe
+- **Puppeteer**: Thư viện để crawl dữ liệu từ trình duyệt headless
+- **Cheerio**: Thư viện phân tích và xử lý HTML
+- **Class Validator**: Thư viện validate dữ liệu
+- **Jest**: Framework testing
+
+## Testing
+
+```bash
+# Chạy unit tests
+npm run test
+
+# Chạy e2e tests
+npm run test:e2e
+
+# Chạy test coverage
+npm run test:cov
+```
+
+## Đóng góp
+
+Mọi đóng góp đều được hoan nghênh! Vui lòng đọc [CONTRIBUTING.md](CONTRIBUTING.md) để biết thêm chi tiết về quy trình đóng góp.
+
+## Giấy phép
+
+Dự án này được cấp phép theo [MIT License](LICENSE).
